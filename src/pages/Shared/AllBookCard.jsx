@@ -1,8 +1,9 @@
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
+import { Link } from "react-router-dom";
 const AllBookCard = ({ book }) => {
-  const { image, name, author, category, rating } = book;
+  const { _id,image, name, author, category, rating } = book;
   console.log(book);
   return (
     <div className="flex flex-col justify-between">
@@ -17,9 +18,9 @@ const AllBookCard = ({ book }) => {
         </p>
       </div>
       <div>
-        <button className="border rounded-full text-center my-6 w-full text-[#666666] font-normal text-sm py-2 hover:bg-[#76b748e3] hover:text-white">
+        <Link to={`/updatebook/${_id}`}><button className="border rounded-full text-center my-6 w-full text-[#666666] font-normal text-sm py-2 hover:bg-[#76b748e3] hover:text-white">
           Update
-        </button>
+        </button></Link>
       </div>
     </div>
   );
