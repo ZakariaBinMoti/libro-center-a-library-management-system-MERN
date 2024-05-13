@@ -9,7 +9,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
-      <NavLink to="/">
+      <NavLink className={`hover:text-blue-100`} to="/">
         <li>Home</li>
       </NavLink>
       <NavLink to="/allbooks">
