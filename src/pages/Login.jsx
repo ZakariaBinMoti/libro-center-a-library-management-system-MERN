@@ -50,11 +50,29 @@ const Login = () => {
 
   const from = location?.state || "/";
   const handleSocialLogin = (socialProvider) => {
-    socialProvider().then((result) => {
-      if (result.user) {
-        navigate(from);
-      }
-    });
+    socialProvider()
+      .then((result) => {
+        if (result.user) {
+          navigate(from);
+        }
+      })
+      .catch((error) => {
+        if (error.code && error.code.startsWith("auth/")) {
+          // Extract and display the error message
+          Swal.fire({
+            title: "Error!",
+            text: `${error.message}`,
+            icon: "error",
+          });
+        } else {
+          // If it's not a Firebase error, you can display the error object
+          Swal.fire({
+            title: "Error!",
+            text: `${error}`,
+            icon: "error",
+          });
+        }
+      });
   };
 
   // const handleGoogle = () => {
@@ -130,13 +148,16 @@ const Login = () => {
         </div>
         <div className="grid grid-cols-2 gap-2">
           <button
-            onClick={()=>handleSocialLogin(googleLogIn)}
+            onClick={() => handleSocialLogin(googleLogIn)}
             className="btn w-full border border-gray-500 shadow-md"
           >
             {" "}
             <FaGoogle></FaGoogle> Google
           </button>
-          <button onClick={()=> handleSocialLogin(githubLogIn) } className="btn w-full border-gray-500 shadow-md">
+          <button
+            onClick={() => handleSocialLogin(githubLogIn)}
+            className="btn w-full border-gray-500 shadow-md"
+          >
             {" "}
             <FaGithub></FaGithub> Github
           </button>

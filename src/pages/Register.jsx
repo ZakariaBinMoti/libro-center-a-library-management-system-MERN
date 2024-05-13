@@ -38,7 +38,15 @@ const Register = () => {
         text: "Password must contain at least one lowercase letter.",
         icon: "error",
       });
-    } else {
+    }
+    else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?\/\\]/.test(password)) {
+      Swal.fire({
+        title: "Error!",
+        text: "Password must contain at least one special character.",
+        icon: "error",
+      });
+    }
+    else {
       createUser(email, password)
         .then((result) => {
           console.log(result.user);
