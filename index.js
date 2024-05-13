@@ -29,7 +29,7 @@ async function run() {
         const booksCollection = client.db('libroCenter').collection('books');
 
 
-        app.get('/books', async(req, res) => {
+        app.get('/books', async (req, res) => {
             const cursor = booksCollection.find();
             console.log('this is cursor', cursor);
             const result = await cursor.toArray();
@@ -41,11 +41,32 @@ async function run() {
             const query = { _id: new ObjectId(id) };
             const result = await booksCollection.findOne(query);
             res.send(result);
-          })
+        })
 
-        app.post('/books', async(req, res) => {
+        app.post('/books', async (req, res) => {
             const newBook = req.body;
             const result = await booksCollection.insertOne(newBook);
+            res.send(result);
+        })
+
+        app.put('/books/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedBook = req.body;
+            const book = {
+                $set: {
+                    image: updatedBook.image,
+                    name: updatedBook.name,
+                    quantity: updatedBook.quantity,
+                    author: updatedBook.author,
+                    category: updatedBook.category,
+                    description: updatedBook.description,
+                    rating: updatedBook.rating,
+                    content: updatedBook.content,
+                }
+            }
+            const result = await booksCollection.updateOne(filter, book, options);
             res.send(result);
         })
 
