@@ -9,17 +9,17 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
-      <NavLink className={`hover:text-blue-100`} to="/">
-        <li>Home</li>
+      <NavLink  to="/">
+        <li className={`hover:bg-[#4f914f34] p-2`}>Home</li>
       </NavLink>
       <NavLink to="/allbooks">
-        <li>All Books</li>
+        <li className={`hover:bg-[#4f914f34] p-2`}>All Books</li>
       </NavLink>
       <NavLink to="/addbook">
-        <li>Add Book</li>
+        <li className={`hover:bg-[#4f914f34] p-2`}>Add Book</li>
       </NavLink>
       <NavLink to="borrowedbooks">
-        <li>Borrowed Books</li>
+        <li className={`hover:bg-[#4f914f34] p-2`}>Borrowed Books</li>
       </NavLink>
     </>
   );
@@ -142,7 +142,7 @@ const Navbar = () => {
           <p className="text-right text-blue-500 hover:text-green-500 text-sm">+Advanced search</p>
         </div>
       </div>
-      <div className="navbar bg-[#77b748]">
+      <div className="navbar p-0 m-0 bg-[#77b748]">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -163,14 +163,14 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content  mt-3 z-[1] shadow bg-base-100 rounded-box w-52"
             >
               {navLinks}
             </ul>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu gap-5 menu-horizontal text-white font-medium px-1">
+          <ul className="menu gap-5 menu-horizontal p-0 m-0 text-white font-medium px-1">
             {navLinks}
           </ul>
         </div>
