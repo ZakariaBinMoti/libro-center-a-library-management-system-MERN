@@ -68,13 +68,13 @@ const AddBook = () => {
   return (
     <div className="max-w-7xl mx-auto">
       {/* <h1 className="text-center text-3xl">Type Craft Item Details</h1> */}
-      <div className="my-7">
+      <div className="my-7 text-center">
         <h1 className="text-3xl font-medium">Add Book</h1>
         <h3 className="text-sm">Add new book in the library.</h3>
       </div>
       <hr />
 
-      <div>
+      <div className="mt-4">
         <div className="hero-content bg-[#62665e11] flex-col lg:flex-col mx-10">
           <div className="card shrink-0 w-full shadow-2xl  ">
             {/* form */}

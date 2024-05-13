@@ -11,7 +11,7 @@ const githubProvider = new GithubAuthProvider();
 const AuthProviders = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [subcategoryName, setSubcategoryName]  = useState('');
+    const [categoryName, setcategoryName]  = useState('');
 
 
     const createUser = (email, password) =>{
@@ -54,8 +54,8 @@ const AuthProviders = ({children}) => {
     const authInfo = {
         user,
         loading,
-        subcategoryName,
-        setSubcategoryName,
+        categoryName,
+        setcategoryName,
         createUser,
         signIn,
         googleLogIn,

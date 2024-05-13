@@ -4,7 +4,6 @@ import "@smastrom/react-rating/style.css";
 import { Link } from "react-router-dom";
 const AllBookCard = ({ book }) => {
   const { _id,image, name, author, category, rating } = book;
-  console.log(book);
   return (
     <div className="flex flex-col justify-between">
       <div>

@@ -1,8 +1,9 @@
-import { Navigate, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateBook = () => {
   const book = useLoaderData();
+  const navigate = useNavigate();
   const {
     _id,
     image,
@@ -59,7 +60,7 @@ const UpdateBook = () => {
             text: "Updated Successfully!",
             icon: "success",
           });
-          Navigate("/allbooks");
+          navigate("/allbooks");
         } else {
           Swal.fire({
             icon: "error",
