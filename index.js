@@ -6,7 +6,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+      "http://localhost:5173",
+    ],
+    credentials: true,
+  }));
 app.use(express.json());
 
 
@@ -77,6 +82,30 @@ async function run() {
                 }
             }
             const result = await booksCollection.updateOne(filter, book, options);
+            res.send(result);
+        })
+
+        app.put('/quantitydecrease/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const book = {
+                $inc: {
+                    quantity: -1,
+                }
+            }
+            const result = await booksCollection.updateOne(filter, book);
+            res.send(result);
+        })
+
+        app.put('/quantityincrease/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const book = {
+                $inc: {
+                    quantity: 1,
+                }
+            }
+            const result = await booksCollection.updateOne(filter, book);
             res.send(result);
         })
 
