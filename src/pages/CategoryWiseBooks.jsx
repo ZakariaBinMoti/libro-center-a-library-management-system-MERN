@@ -12,7 +12,7 @@ const CategoryWiseBooks = () => {
       .then((data) => setBooks(data));
   }, [categoryName]);
 
-  console.log(books);
+//   console.log(books);
 
   return (
     <div>

@@ -1,12 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import Swal from "sweetalert2";
 const BookDetails = () => {
-  const { user } = useContext(AuthContext);
-
   const book = useLoaderData();
   const {
     _id,
@@ -20,28 +18,47 @@ const BookDetails = () => {
     content,
   } = book;
 
+  const { user } = useContext(AuthContext);
+  const [quantityState, setQuantityState] = useState(quantity);
+  const [books, setBooks] = useState([]);
+  //   console.log(_id);
 
-  console.log(_id);
+  const handlefirstbutton = () => {
+    fetch(`http://localhost:5000/borrowedbooks?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBooks(data);
+        const available = data.find((book) => book._id == _id);
+        if (available) {
+          Swal.fire({
+            title: "Error!",
+            text: "You can not borrow 2 piece of same books!",
+            icon: "error",
+          });
+        } else {
+          document.getElementById("my_modal_2").showModal();
+        }
+      });
+    console.log("click");
+    console.log(books);
+  };
 
   const handleBorrowedBook = (event) => {
     event.preventDefault();
-
     const form = event.target;
-
     const returndate = form.returndate.value;
-
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
     const date = new Date().getDate();
-    const borrowdate = `${year}-${month+1}-${date}`;
+    const borrowdate = `${year}-${month + 1}-${date}`;
     const borrowedBook = {
-        _id,
-        image,
-        name,
-        category,
-        borrowdate,
-        returndate,
-        email: user.email,
+      _id,
+      image,
+      name,
+      category,
+      borrowdate,
+      returndate,
+      email: user.email,
     };
 
     fetch("http://localhost:5000/borrowedbooks", {
@@ -53,13 +70,21 @@ const BookDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
             text: "You Have Successfully borrowed this book!",
             icon: "success",
           });
+
+          fetch(`http://localhost:5000/quantitydecrease/${_id}`, {
+            method: "PUT",
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
+          setQuantityState(quantityState - 1);
           event.target.reset();
         } else {
           Swal.fire({
@@ -70,7 +95,6 @@ const BookDetails = () => {
           event.target.reset();
         }
       });
-
   };
 
   return (
@@ -110,13 +134,13 @@ const BookDetails = () => {
             <p>{content}</p>
             <p className="pt-3 font-semibold text-lg">
               Available Quantity:{" "}
-              <span className="text-blue-500">{quantity}</span>{" "}
+              <span className="text-blue-500">{quantityState}</span>{" "}
             </p>
           </div>
           <div>
             <button
-              onClick={() => document.getElementById("my_modal_2").showModal()}
-              className="border btn rounded-sm text-center my-2 w-full text-[#666666] font-normal text-sm py-0 hover:bg-[#76b748e3] hover:text-white"
+              onClick={handlefirstbutton}
+              className={`border ${quantityState > 0 ? "" : "btn-disabled"}  btn rounded-sm text-center my-2 w-full text-[#666666] font-normal text-sm py-0 hover:bg-[#76b748e3] hover:text-white`}
             >
               Borrow
             </button>
@@ -135,7 +159,7 @@ const BookDetails = () => {
             <div>
               <h1 className="text-xl">{name}</h1>
               <p>By: {author}</p>
-              <p>Available Quantity: {quantity}</p>
+              <p>Available Quantity: {quantityState}</p>
             </div>
           </div>
           <div className="mt-2">
@@ -172,6 +196,6 @@ const BookDetails = () => {
       </dialog>
     </div>
   );
-};  
+};
 
 export default BookDetails;

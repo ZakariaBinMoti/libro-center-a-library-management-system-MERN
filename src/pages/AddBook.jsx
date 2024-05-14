@@ -14,16 +14,16 @@ const AddBook = () => {
     const description = form.description.value;
     const rating = parseInt(form.rating.value);
     const content = form.content.value;
-    console.log(
-      image,
-      name,
-      quantity,
-      author,
-      category,
-      description,
-      rating,
-      content
-    );
+    // console.log(
+    //   image,
+    //   name,
+    //   quantity,
+    //   author,
+    //   category,
+    //   description,
+    //   rating,
+    //   content
+    // );
 
     const newBook = {
       image,
@@ -35,7 +35,7 @@ const AddBook = () => {
       rating,
       content,
     };
-    console.log(newBook);
+    // console.log(newBook);
 
     fetch("http://localhost:5000/books", {
       method: "POST",
@@ -46,7 +46,7 @@ const AddBook = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",

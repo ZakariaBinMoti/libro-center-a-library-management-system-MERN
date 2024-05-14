@@ -15,7 +15,7 @@ const UpdateBook = () => {
     rating,
     content,
   } = book;
-  console.log(book);
+  // console.log(book);
 
   const handleUpdateBook = (event) => {
     event.preventDefault();
@@ -53,7 +53,7 @@ const UpdateBook = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",

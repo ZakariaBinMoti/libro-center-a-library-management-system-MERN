@@ -12,13 +12,13 @@ const Register = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
+    // console.log(e.currentTarget);
     const form = new FormData(e.currentTarget);
-    const name = form.get("name");
+    // const name = form.get("name");
     const email = form.get("email");
-    const photo = form.get("photo");
+    // const photo = form.get("photo");
     const password = form.get("password");
-    console.log(name, email, photo, password);
+    // console.log(name, email, photo, password);
 
     if (password.length < 6) {
       Swal.fire({
@@ -49,7 +49,7 @@ const Register = () => {
     else {
       createUser(email, password)
         .then((result) => {
-          console.log(result.user);
+          // console.log(result.user);
           if (result.user) {
             Swal.fire({
               title: "Success!",
