@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
+import { useNavigate } from "react-router-dom";
 
 const BookCategories = () => {
   const { categoryName, setcategoryName } = useContext(AuthContext);
+  const navigate = useNavigate();
   console.log(categoryName);
   const handleButton = (category) => {
     setcategoryName(category);
+    navigate(`/category/${category}`);
   };
 
   return (
