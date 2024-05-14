@@ -27,6 +27,7 @@ async function run() {
         await client.connect();
 
         const booksCollection = client.db('libroCenter').collection('books');
+        const borrowBooksCollection = client.db('libroCenter').collection('borrowedBooks');
 
 
         app.get('/books', async (req, res) => {
@@ -76,6 +77,12 @@ async function run() {
                 }
             }
             const result = await booksCollection.updateOne(filter, book, options);
+            res.send(result);
+        })
+
+        app.post('/borrowedbooks', async (req, res) => {
+            const borrowBook = req.body;
+            const result = await borrowBooksCollection.insertOne(borrowBook);
             res.send(result);
         })
 
