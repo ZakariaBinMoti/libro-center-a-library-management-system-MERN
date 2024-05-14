@@ -19,10 +19,15 @@ const BorrowedBooks = () => {
         <h3 className="text-sm">A huge and tremendios collection of Books.</h3>
       </div>
       <hr />
-      <div className="mt-10 grid grid-cols-6">
-        {
-            books.map(book => <BorrowBookCard key={book._id} book={book}></BorrowBookCard>)
-        }
+      <div className="mt-10 grid gap-7 grid-cols-5">
+        {books.map((book) => (
+          <BorrowBookCard
+            key={book._id}
+            book={book}
+            books={books}
+            setBooks={setBooks}
+          ></BorrowBookCard>
+        ))}
       </div>
     </div>
   );
