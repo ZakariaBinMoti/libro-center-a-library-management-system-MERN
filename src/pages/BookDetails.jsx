@@ -148,6 +148,9 @@ const BookDetails = () => {
         </div>
       </div>
 
+
+
+
       {/* modal  */}
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_2" className="modal">
