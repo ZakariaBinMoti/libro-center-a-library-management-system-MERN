@@ -40,7 +40,8 @@ const BookDetails = () => {
         name,
         category,
         borrowdate,
-        returndate
+        returndate,
+        email: user.email,
     };
 
     fetch("http://localhost:5000/borrowedbooks", {
