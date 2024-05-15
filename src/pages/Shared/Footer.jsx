@@ -39,7 +39,9 @@ const Footer = () => {
         </fieldset>
       </form>
         </div>
-      
+      <div className=" bg-gray-500">
+        <p className="text-white max-w-7xl mx-auto ">2017 All Rights Reserved By © Libro Center</p>
+      </div>
     </footer>
   );
 };

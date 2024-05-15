@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 const CategoryWiseBookCard = ({book}) => {
     const { _id,image, name, author, category, rating } = book;
     return (
-        <div className="flex flex-col justify-between shadow-lg p-5 rounded-sm">
-        <div>
+        <div className="flex flex-col justify-between p-5 mx-1">
+        <div className="grow">
           <img src={image}  alt=""/>
           <h3 className="py-2 text-sm">{category}</h3>
           <hr />

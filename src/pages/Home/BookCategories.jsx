@@ -12,7 +12,7 @@ const BookCategories = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div className="mt-20 mb-6">
         <h1 className="text-3xl font-medium">Categories</h1>
         <h3 className="text-sm">
