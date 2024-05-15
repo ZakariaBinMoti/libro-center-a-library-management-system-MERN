@@ -39,7 +39,7 @@ const Register = () => {
         icon: "error",
       });
     }
-    else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?\/\\]/.test(password)) {
+    else if (!/[!@#$%^&*()_+{}[\]:;<>,.?/\\]/.test(password)) {
       Swal.fire({
         title: "Error!",
         text: "Password must contain at least one special character.",

@@ -18,7 +18,7 @@ const Login = () => {
     const password = form.get("password");
     signIn(email, password)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         if (result.user) {
           Swal.fire({
             title: "Success!",

@@ -5,7 +5,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import Swal from "sweetalert2";
 const BookDetails = () => {
-  const [hidden, setHidden] = useState(false);
   const book = useLoaderData();
   const {
     _id,
@@ -21,14 +20,14 @@ const BookDetails = () => {
 
   const { user } = useContext(AuthContext);
   const [quantityState, setQuantityState] = useState(quantity);
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
   //   console.log(_id);
 
   const handlefirstbutton = () => {
-    fetch(`http://localhost:5000/borrowedbooks?email=${user.email}`)
+    fetch(`https://libro-center-server.vercel.app/borrowedbooks?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
-        setBooks(data);
+        // setBooks(data);
         const available = data.find((book) => book._id == _id);
         if (available) {
           Swal.fire({
@@ -40,8 +39,8 @@ const BookDetails = () => {
           document.getElementById("my_modal_2").showModal();
         }
       });
-    console.log("click");
-    console.log(books);
+    // console.log("click");
+    // console.log(books);
   };
 
   const handleBorrowedBook = (event) => {
@@ -62,7 +61,7 @@ const BookDetails = () => {
       email: user.email,
     };
 
-    fetch("http://localhost:5000/borrowedbooks", {
+    fetch("https://libro-center-server.vercel.app/borrowedbooks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -73,19 +72,18 @@ const BookDetails = () => {
       .then((data) => {
         // console.log(data);
         if (data.insertedId) {
-          setHidden(true);
           Swal.fire({
             
             title: "Success!",
             text: "You Have Successfully borrowed this book!",
             icon: "success",
           });
-          fetch(`http://localhost:5000/quantitydecrease/${_id}`, {
+          fetch(`https://libro-center-server.vercel.app/quantitydecrease/${_id}`, {
             method: "PUT",
           })
             .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.log(error));
+            .then()
+            .catch();
           setQuantityState(quantityState - 1);
           event.target.reset();
         } else {
