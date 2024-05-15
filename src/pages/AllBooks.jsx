@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AllBookCard from "./Shared/AllBookCard";
 import { MdOutlineGridView } from "react-icons/md";
 import { FaListUl } from "react-icons/fa";
+import AllBookListCard from "./Shared/AllBookListCard";
 
 const AllBooks = () => {
   const [allbooks, setallBooks] = useState([]);
@@ -9,15 +10,14 @@ const AllBooks = () => {
   const [toggle, setToggle] = useState(false);
 
   const handleCustomfilter = (filter) => {
-    if(filter=='Yes'){
+    if (filter == "Yes") {
       const availablebooks = allbooks.filter((book) => book.quantity > 0);
       setBooks(availablebooks);
     }
-    if(filter=="No"){
+    if (filter == "No") {
       setBooks(allbooks);
     }
   };
-
 
   useEffect(() => {
     fetch("http://localhost:5000/books")
@@ -35,7 +35,7 @@ const AllBooks = () => {
           <h1 className="text-3xl font-medium">All Books</h1>
           <h3 className="text-sm">A huge and tremendios collection of</h3>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex gap-4 items-center justify-center">
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -69,19 +69,56 @@ const AllBooks = () => {
               </li>
             </ul>
           </div>
-          <div className=" flex border-2 border-[#77b748]   gap-2">
-            <button onClick={()=>setToggle(false)} className=" pl-[6px]"><MdOutlineGridView /></button>
-            <button onClick={()=>setToggle(true)} className="border-l-2 p-[6px] border-[#77b748]"><FaListUl /></button>
+          <div className=" flex border-2 border-[#77b748]">
+            <button onClick={() => setToggle(false)} className={` ${toggle?"":"bg-[#76b7485b]"} hover:text-white hover:bg-[#77b748] pr-[6px] pl-[6px]`}>
+              <MdOutlineGridView />
+            </button>
+            <button
+              onClick={() => setToggle(true)}
+              className={`border-l-2 ${!toggle?"":"bg-[#76b7485b]"} hover:bg-[#77b748] hover:text-white p-[6px] border-[#77b748]`}            >
+              <FaListUl />
+            </button>
           </div>
         </div>
       </div>
 
       <hr />
-      <div className="my-5 grid grid-cols-6 gap-8">
-        {books.map((book) => (
-          <AllBookCard key={book._id} book={book}></AllBookCard>
-        ))}
-      </div>
+
+      {toggle ? (
+        <>
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th>Book</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Ratings</th>
+                  <th></th>
+                </tr>
+                {books.map((book, idx) => (
+                  <AllBookListCard
+                    key={book._id}
+                    idx={idx}
+                    book={book}
+                  ></AllBookListCard>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="my-5 grid grid-cols-6 gap-8">
+            {books.map((book) => (
+              <AllBookCard key={book._id} book={book}></AllBookCard>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };
