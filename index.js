@@ -107,7 +107,7 @@ async function run() {
             res.send(result);
         })
 
-        app.post('/books', async (req, res) => {
+        app.post('/books',logger, verifyToken, async (req, res) => {
             const newBook = req.body;
             const result = await booksCollection.insertOne(newBook);
             res.send(result);
