@@ -86,7 +86,7 @@ const Login = () => {
   // };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       {/* <Helmet>
         <title>Login | Radiant Artistry</title>
       </Helmet> */}

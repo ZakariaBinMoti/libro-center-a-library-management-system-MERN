@@ -30,8 +30,8 @@ const AllBooks = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="flex justify-between">
-        <div className="my-7">
+      <div className="flex flex-col lg:flex-row justify-between">
+        <div className="my-7 ml-5 lg:ml-0">
           <h1 className="text-3xl font-medium">All Books</h1>
           <h3 className="text-sm">A huge and tremendios collection of</h3>
         </div>
@@ -112,7 +112,7 @@ const AllBooks = () => {
         </>
       ) : (
         <>
-          <div className="my-5 grid grid-cols-6 gap-8">
+          <div className="my-5 grid lg:grid-cols-6 md:grid-cols-3 grid-cols-1 mx-4 lg:mx-0 gap-8">
             {books.map((book) => (
               <AllBookCard key={book._id} book={book}></AllBookCard>
             ))}

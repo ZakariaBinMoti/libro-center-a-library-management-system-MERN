@@ -82,7 +82,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       {/* <Helmet>
         <title>Register | Radiant Artistry</title>
       </Helmet> */}

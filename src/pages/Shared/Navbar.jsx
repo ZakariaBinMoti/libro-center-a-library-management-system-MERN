@@ -12,6 +12,9 @@ const Navbar = () => {
       <NavLink to="/">
         <li className={`hover:bg-[#4f914f34] p-2`}>Home</li>
       </NavLink>
+      <NavLink to="/categories">
+        <li className={`hover:bg-[#4f914f34] p-2`}>Categories</li>
+      </NavLink>
       <NavLink to="/allbooks">
         <li className={`hover:bg-[#4f914f34] p-2`}>All Books</li>
       </NavLink>
@@ -64,7 +67,7 @@ const Navbar = () => {
 
   return (
     <nav className="">
-      <div className=" flex justify-between items-center max-w-7xl mx-auto">
+      <div className="mt-2 lg:mt-0 flex flex-col lg:flex-row gap-2 justify-between items-center max-w-7xl mx-auto">
         <div>
           <ul className="flex gap-2">
             <li className="flex items-center gap-2">
@@ -163,7 +166,9 @@ const Navbar = () => {
         </div>
       </div>
       <hr />
-      <div className="flex gap-10 py-8 max-w-7xl mx-auto">
+
+
+      <div className="flex flex-col lg:flex-row gap-10 py-8 max-w-7xl mx-auto">
         <Link to="/">
           <img src={logo} alt="" />
         </Link>
@@ -194,7 +199,7 @@ const Navbar = () => {
       </div>
       <div className="navbar p-0 m-0 bg-[#77b748]">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown z-50">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

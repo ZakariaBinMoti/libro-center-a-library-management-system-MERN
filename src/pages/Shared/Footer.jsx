@@ -31,16 +31,16 @@ const Footer = () => {
           <div className="join">
             <input
               type="text"
-              placeholder="username@site.com"
+              placeholder="email"
               className="input input-bordered join-item"
             />
-            <button className="btn bg-[green] join-item">Subscribe</button>
+            <button className="btn bg-[#7f909c] join-item">Subscribe</button>
           </div>
         </fieldset>
       </form>
         </div>
       <div className=" bg-gray-500">
-        <p className="text-white max-w-7xl mx-auto ">2017 All Rights Reserved By © Libro Center</p>
+        <p className="text-white max-w-7xl mx-auto py-3">2017 All Rights Reserved By © Libro Center</p>
       </div>
     </footer>
   );

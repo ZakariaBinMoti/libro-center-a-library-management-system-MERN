@@ -15,6 +15,7 @@ import ErrorPage from "./pages/ErrorPage";
 import UpdateBook from "./pages/UpdateBook";
 import CategoryWiseBooks from "./pages/CategoryWiseBooks";
 import BookDetails from "./pages/BookDetails";
+import BookCategories from "./pages/Home/BookCategories";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/categories",
+        element: <BookCategories></BookCategories>,
       },
       {
         path: "/addbook",

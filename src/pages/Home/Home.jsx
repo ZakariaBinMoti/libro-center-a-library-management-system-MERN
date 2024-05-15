@@ -9,10 +9,10 @@ import { CiHeart } from "react-icons/ci";
 const Home = () => {
   return (
     <div>
-      <div className="relative">
+      <div className="lg:relative">
         <Header></Header>
 
-        <div className="absolute z-50  right-0 left-0 top-0 bottom-0 m-auto max-w-3xl ">
+        <div className="lg:absolute z-50  my-4 lg:my-0 right-0 left-0 top-0 bottom-0 m-auto max-w-3xl ">
           <div className="flex flex-col space-y-5 items-center justify-center mt-36 ">
             <img className="rounded-full border-2 p-3" src={img2} alt="" />
             <h1 className="text-5xl font-semibold">Jude Morfew</h1>
@@ -34,7 +34,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="grid absolute bottom-20 z-50 left-0 right-0  font-medium text-2xl grid-cols-1 lg:grid-cols-3 gap-6 text-center max-w-7xl mx-auto ">
+        <div className="grid mx-3 lg:absolute bottom-20 z-50 left-0 right-0  font-medium text-2xl grid-cols-1 lg:grid-cols-3 gap-6 text-center max-w-7xl lg:mx-auto ">
           <div className={`p-3 bg-[#4988cf4b] bg-fixed bg-[url('')]`}>
             <div className="border-2 space-y-1 p-12 flex flex-col items-center justify-center">
               <p className="text-white">
@@ -69,9 +69,9 @@ const Home = () => {
       <BookCategories></BookCategories>
       <PopularBooks></PopularBooks>
 
-      <div className="relative my-28">
+      <div className="lg:relative my-28">
         <div className="bg-base-200 p-24">
-          <div className="max-w-3xl pl-60 space-y-1 mx-auto">
+          <div className="max-w-3xl lg:pl-60 space-y-1 mx-auto">
             <h2 className="bg-red-400 px-1 text-sm flex w-fit text-white">
               FEATURED
             </h2>
@@ -82,7 +82,7 @@ const Home = () => {
           </div>
         </div>
         <div className="max-w-6xl mx-auto">
-          <img className="absolute -top-8" src={img} alt="" />
+          <img className="lg:absolute -top-8" src={img} alt="" />
         </div>
       </div>
     </div>

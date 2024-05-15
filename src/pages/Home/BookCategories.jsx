@@ -13,7 +13,7 @@ const BookCategories = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="mt-20 mb-6">
+      <div className="mt-20 mb-6 ml-5 lg:ml-0">
         <h1 className="text-3xl font-medium">Categories</h1>
         <h3 className="text-sm">
           Find Your suitable book finding by Categories
@@ -22,7 +22,7 @@ const BookCategories = () => {
 
       <hr />
 
-      <div className="grid mt-2 grid-cols-4 gap-9">
+      <div className="grid mt-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-9">
         <div
           className="cursor-pointer hover:bg-[#76b74817] p-5 flex flex-col justify-between text-center"
           onClick={() => handleButton("Novel")}

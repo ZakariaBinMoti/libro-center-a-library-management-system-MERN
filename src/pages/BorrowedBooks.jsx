@@ -14,12 +14,12 @@ const BorrowedBooks = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="my-7">
+      <div className="my-7 ml-4 lg:ml-0">
         <h1 className="text-3xl font-medium">Borrowed Books</h1>
         <h3 className="text-sm">A huge and tremendios collection of Books.</h3>
       </div>
       <hr />
-      <div className="mt-10 grid gap-7 grid-cols-5">
+      <div className="mt-10 grid gap-7 md:grid-cols-3 grid-cols-1 lg:grid-cols-5">
         {books.map((book) => (
           <BorrowBookCard
             key={book._id}

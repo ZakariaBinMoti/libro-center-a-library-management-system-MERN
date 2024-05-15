@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import Swal from "sweetalert2";
 const BookDetails = () => {
+  const [hidden, setHidden] = useState(false);
   const book = useLoaderData();
   const {
     _id,
@@ -72,12 +73,13 @@ const BookDetails = () => {
       .then((data) => {
         // console.log(data);
         if (data.insertedId) {
+          setHidden(true);
           Swal.fire({
+            
             title: "Success!",
             text: "You Have Successfully borrowed this book!",
             icon: "success",
           });
-
           fetch(`http://localhost:5000/quantitydecrease/${_id}`, {
             method: "PUT",
           })
@@ -140,7 +142,9 @@ const BookDetails = () => {
           <div>
             <button
               onClick={handlefirstbutton}
-              className={`border ${quantityState > 0 ? "" : "btn-disabled"}  btn rounded-sm text-center my-2 w-full text-[#666666] font-normal text-sm py-0 hover:bg-[#76b748e3] hover:text-white`}
+              className={`border ${
+                quantityState > 0 ? "" : "btn-disabled"
+              }  btn rounded-sm text-center my-2 w-full text-[#666666] font-normal text-sm py-0 hover:bg-[#76b748e3] hover:text-white`}
             >
               Borrow
             </button>
@@ -148,12 +152,9 @@ const BookDetails = () => {
         </div>
       </div>
 
-
-
-
       {/* modal  */}
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <dialog id="my_modal_2" className="modal">
+      <dialog id="my_modal_2" className={`modal`}>
         <div className="modal-box lg:p-12">
           <div className=" flex gap-5">
             <div>
