@@ -66,6 +66,7 @@ async function run() {
 
         const booksCollection = client.db('libroCenter').collection('books');
         const borrowBooksCollection = client.db('libroCenter').collection('borrowedBooks');
+        const bookReviewsCollection = client.db('libroCenter').collection('bookReviews');
 
 
         app.post('/jwt', async (req, res) => {
@@ -178,6 +179,22 @@ async function run() {
             const id = req.params.id;
             const query = { _id: id };
             const result = await borrowBooksCollection.deleteOne(query);
+            res.send(result);
+        })
+
+        app.post('/bookreviews', async (req, res) => {
+            const bookReview = req.body;
+            const result = await bookReviewsCollection.insertOne(bookReview);
+            res.send(result);
+        })
+
+        app.get('/bookreviews',async(req, res) =>{
+            let query = {};
+            if (req.query?.bookid) {
+                query = { bookid: req.query.bookid }
+                console.log(query);
+            }
+            const result = await bookReviewsCollection.find(query).toArray();
             res.send(result);
         })
 
