@@ -7,7 +7,7 @@ const CategoryWiseBooks = () => {
   const [books, setBooks] = useState();
 
   useEffect(() => {
-    fetch(`https://libro-center-server.vercel.app/allbooks?category=${categoryName}`)
+    fetch(`http://localhost:5000/allbooks?category=${categoryName}`)
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, [categoryName]);

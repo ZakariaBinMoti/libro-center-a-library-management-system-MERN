@@ -16,7 +16,7 @@ const BorrowBookCard = ({ book, books, setBooks }) => {
       confirmButtonText: "Yes, Return it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://libro-center-server.vercel.app/borrowedbooks/${id}`, {
+        fetch(`http://localhost:5000/borrowedbooks/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -32,7 +32,7 @@ const BorrowBookCard = ({ book, books, setBooks }) => {
               const remaining = books.filter((book) => book._id !== id);
               setBooks(remaining);
 
-              fetch(`https://libro-center-server.vercel.app/quantityincrease/${id}`,{
+              fetch(`http://localhost:5000/quantityincrease/${id}`,{
                 method: "PUT",
               })
               .then(res=>res.json())

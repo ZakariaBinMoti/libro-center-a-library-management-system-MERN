@@ -37,7 +37,7 @@ const AddBook = () => {
     };
     // console.log(newBook);
 
-    fetch("https://libro-center-server.vercel.app/books", {
+    fetch("http://localhost:5000/books", {
       credentials: 'include',
       method: "POST",
       headers: {

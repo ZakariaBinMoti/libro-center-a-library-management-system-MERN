@@ -78,7 +78,7 @@ const router = createBrowserRouter([
             <UpdateBook></UpdateBook>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`https://libro-center-server.vercel.app/books/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/books/${params.id}`)
       },
       {
         path: "/bookdetails/:id",
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
             <BookDetails></BookDetails>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`https://libro-center-server.vercel.app/books/${params.id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/books/${params.id}`)
       },
     ],
   },

@@ -20,7 +20,7 @@ const AllBooks = () => {
   };
 
   useEffect(() => {
-    fetch("https://libro-center-server.vercel.app/books", {credentials: 'include'})
+    fetch("http://localhost:5000/books", {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);

@@ -4,6 +4,7 @@ import "@smastrom/react-rating/style.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProviders";
 import Swal from "sweetalert2";
+import BookReviews from "./Shared/BookReviews";
 const BookDetails = () => {
   const book = useLoaderData();
   const {
@@ -24,7 +25,7 @@ const BookDetails = () => {
   //   console.log(_id);
 
   const handlefirstbutton = () => {
-    fetch(`https://libro-center-server.vercel.app/borrowedbooks?email=${user.email}`)
+    fetch(`http://localhost:5000/borrowedbooks?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         // setBooks(data);
@@ -61,7 +62,7 @@ const BookDetails = () => {
       email: user.email,
     };
 
-    fetch("https://libro-center-server.vercel.app/borrowedbooks", {
+    fetch("http://localhost:5000/borrowedbooks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -73,12 +74,11 @@ const BookDetails = () => {
         // console.log(data);
         if (data.insertedId) {
           Swal.fire({
-            
             title: "Success!",
             text: "You Have Successfully borrowed this book!",
             icon: "success",
           });
-          fetch(`https://libro-center-server.vercel.app/quantitydecrease/${_id}`, {
+          fetch(`http://localhost:5000/quantitydecrease/${_id}`, {
             method: "PUT",
           })
             .then((res) => res.json())
@@ -196,6 +196,10 @@ const BookDetails = () => {
           <button>close</button>
         </form>
       </dialog>
+
+      <div>
+        <BookReviews id={_id}></BookReviews>
+      </div>
     </div>
   );
 };

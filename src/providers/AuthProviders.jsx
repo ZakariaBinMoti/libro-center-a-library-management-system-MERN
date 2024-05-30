@@ -59,13 +59,13 @@ const AuthProviders = ({ children }) => {
       // if user exist then issue a token
       if (currentUser) {
         axios
-          .post("https://libro-center-server.vercel.app/jwt", loggedUser, {
+          .post("http://localhost:5000/jwt", loggedUser, {
             withCredentials: true,
           })
           .then();
       } else {
         axios
-          .post("https://libro-center-server.vercel.app/logout", loggedUser, {
+          .post("http://localhost:5000/logout", loggedUser, {
             withCredentials: true,
           })
           .then();

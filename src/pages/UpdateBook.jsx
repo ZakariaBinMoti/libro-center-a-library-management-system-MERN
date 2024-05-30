@@ -44,7 +44,7 @@ const UpdateBook = () => {
 
     // console.log("this is the form", UpdateBook);
 
-    fetch(`https://libro-center-server.vercel.app/books/${_id}`, {
+    fetch(`http://localhost:5000/books/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
