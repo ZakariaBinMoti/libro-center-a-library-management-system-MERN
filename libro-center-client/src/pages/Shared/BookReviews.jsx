@@ -9,7 +9,7 @@ const BookReviews = ({ id }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/bookreviews?bookid=${id}`)
+      .get(`https://libro-center-server.vercel.app/bookreviews?bookid=${id}`)
       .then((data) => setReviews(data.data));
   }, [id]);
 
@@ -24,7 +24,7 @@ const BookReviews = ({ id }) => {
       reviewdetails,
     };
 
-    axios.post("http://localhost:5000/bookreviews", newReview).then((data) => {
+    axios.post("https://libro-center-server.vercel.app/bookreviews", newReview).then((data) => {
       if (data.data.insertedId) {
         e.target.reset();
       }

@@ -25,7 +25,7 @@ const BookDetails = () => {
   //   console.log(_id);
 
   const handlefirstbutton = () => {
-    fetch(`http://localhost:5000/borrowedbooks?email=${user.email}`)
+    fetch(`https://libro-center-server.vercel.app/borrowedbooks?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         // setBooks(data);
@@ -62,7 +62,7 @@ const BookDetails = () => {
       email: user.email,
     };
 
-    fetch("http://localhost:5000/borrowedbooks", {
+    fetch("https://libro-center-server.vercel.app/borrowedbooks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -78,7 +78,7 @@ const BookDetails = () => {
             text: "You Have Successfully borrowed this book!",
             icon: "success",
           });
-          fetch(`http://localhost:5000/quantitydecrease/${_id}`, {
+          fetch(`https://libro-center-server.vercel.app/quantitydecrease/${_id}`, {
             method: "PUT",
           })
             .then((res) => res.json())

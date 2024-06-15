@@ -1,7 +1,23 @@
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddBook = () => {
-  const handleAddBook = (event) => {
+const UpdateBook = () => {
+  const book = useLoaderData();
+  const navigate = useNavigate();
+  const {
+    _id,
+    image,
+    name,
+    quantity,
+    author,
+    category,
+    description,
+    rating,
+    content,
+  } = book;
+  // console.log(book);
+
+  const handleUpdateBook = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -14,18 +30,8 @@ const AddBook = () => {
     const description = form.description.value;
     const rating = parseInt(form.rating.value);
     const content = form.content.value;
-    // console.log(
-    //   image,
-    //   name,
-    //   quantity,
-    //   author,
-    //   category,
-    //   description,
-    //   rating,
-    //   content
-    // );
 
-    const newBook = {
+    const UpdateBook = {
       image,
       name,
       quantity,
@@ -35,33 +41,33 @@ const AddBook = () => {
       rating,
       content,
     };
-    // console.log(newBook);
 
-    fetch("http://localhost:5000/books", {
-      credentials: 'include',
-      method: "POST",
+    // console.log("this is the form", UpdateBook);
+
+    fetch(`https://libro-center-server.vercel.app/books/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newBook),
+      body: JSON.stringify(UpdateBook),
     })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "Book Added Successfully!",
+            text: "Updated Successfully!",
             icon: "success",
           });
-          event.target.reset();
+          navigate("/allbooks");
         } else {
           Swal.fire({
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
           });
-          event.target.reset();
         }
       });
   };
@@ -70,17 +76,17 @@ const AddBook = () => {
     <div className="max-w-7xl mx-auto">
       {/* <h1 className="text-center text-3xl">Type Craft Item Details</h1> */}
       <div className="my-7 text-center">
-        <h1 className="text-3xl font-medium">Add Book</h1>
-        <h3 className="text-sm">Add new book in the library.</h3>
+        <h1 className="text-3xl font-medium">Update Book</h1>
+        <h3 className="text-sm">Update the book in the library.</h3>
       </div>
       <hr />
 
-      <div className="mt-4">
+      <div>
         <div className="hero-content bg-[#62665e11] flex-col lg:flex-col mx-10">
           <div className="card shrink-0 w-full shadow-2xl  ">
             {/* form */}
             <form
-              onSubmit={handleAddBook}
+              onSubmit={handleUpdateBook}
               className="card-body grid grid-cols-1 lg:grid-cols-2 space-x-5"
             >
               <div className="form-control ml-5 lg:col-span-2 border-b-4">
@@ -91,6 +97,7 @@ const AddBook = () => {
                   type="text"
                   placeholder="image URL"
                   name="image"
+                  defaultValue={image}
                   className="input rounded-none"
                   required
                 />
@@ -104,6 +111,7 @@ const AddBook = () => {
                   type="text"
                   name="name"
                   placeholder="name"
+                  defaultValue={name}
                   className="input rounded-none"
                   required
                 />
@@ -117,6 +125,7 @@ const AddBook = () => {
                   type="number"
                   placeholder="quantity"
                   name="quantity"
+                  defaultValue={quantity}
                   className="input rounded-none"
                   required
                 />
@@ -129,6 +138,7 @@ const AddBook = () => {
                 <input
                   type="text"
                   name="author"
+                  defaultValue={author}
                   placeholder="Author name"
                   className="input rounded-none"
                   required
@@ -141,6 +151,7 @@ const AddBook = () => {
                 </label>
                 <select
                   name="category"
+                  defaultValue={category}
                   className="select select-bordered w-full"
                 >
                   <option>Novel</option>
@@ -164,6 +175,7 @@ const AddBook = () => {
                 <input
                   type="text"
                   name="description"
+                  defaultValue={description}
                   placeholder="Short Description"
                   className="input rounded-none"
                   required
@@ -177,6 +189,7 @@ const AddBook = () => {
                 <input
                   type="number"
                   placeholder="rating"
+                  defaultValue={rating}
                   name="rating"
                   className="input rounded-none"
                   required
@@ -192,6 +205,7 @@ const AddBook = () => {
                   placeholder="Write some book content"
                   className="input rounded-none"
                   required
+                  defaultValue={content}
                   id="content"
                   cols="30"
                   rows="10"
@@ -202,7 +216,7 @@ const AddBook = () => {
                 <input
                   className="btn text-white font-semibold bg-[#77b748]"
                   type="submit"
-                  value="Add"
+                  value="Update Book"
                 />
               </div>
             </form>
@@ -213,4 +227,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default UpdateBook;
